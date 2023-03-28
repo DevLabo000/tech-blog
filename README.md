@@ -224,3 +224,33 @@ https://qiita.com/knjname/items/0223a7dc5eff1ef82e0b
 https://qiita.com/pirosikick/items/0a7e85b3d347e77c0df1
 
 https://yumeno.me/reacct-tailwind-emotion2/
+
+## Newtパッケージ追加
+
+```sh
+yarn add newt-client-js
+```
+
+型定義を追加
+
+```json
+# index.d.ts
+declare module '*.svg' {
+  const content: React.FC<React.SVGProps<SVGElement>>;
+  export default content;
+}
+
+declare namespace NodeJS {
+  interface ProcessEnv {
+    readonly NEXT_PUBLIC_NEWT_SPACE_UID: string;
+    readonly NEXT_PUBLIC_NEWT_APP_UID: string;
+    readonly NEXT_PUBLIC_NEWT_API_TOKEN: string;
+    readonly NEXT_PUBLIC_NEWT_API_TYPE: string;
+    readonly NEXT_PUBLIC_NEWT_ARTICLE_MODEL_UID: string;
+    readonly NEXT_PUBLIC_NEWT_TAG_MODEL_UID: string;
+    readonly NEXT_PUBLIC_NEWT_CATEGORY_MODEL_UID: string;
+    readonly NEXT_PUBLIC_NEWT_AUTHOR_MODEL_UID: string;
+    readonly NEXT_PUBLIC_PAGE_LIMIT: string;
+  }
+}
+```

@@ -25,10 +25,10 @@
     ".eslintrc.cjs",
     "next.config.js",
     "tailwind.config.js",
+    "postcss.config.js",
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "src/styles/GlobalStyles.js"
+    "**/*.tsx"
   ],
   "exclude": ["node_modules"]
 }
