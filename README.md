@@ -198,8 +198,29 @@ _templates/
 yarn add dotenv
 ```
 
+### emotion
+
+```sh
+yarn add @emotion/react @emotion/styled @emotion/css @emotion/server
+```
+
+
+### tailwind macro
+
+```
+yarn add -D twin.macro tailwindcss postcss@latest autoprefixer@latest @emotion/babel-plugin babel-plugin-macros
+```
+
 ## 参考情報
 
 https://zenn.dev/thyt_lab/articles/9d2fe951e48906#prettier%E8%BF%BD%E5%8A%A0
 
 https://yumegori.com/vscode_react_typescript_eslint_prettier#chapter-2
+
+https://zenn.dev/junseinagao/articles/eb1d550faeae62#twin.macro
+
+https://qiita.com/knjname/items/0223a7dc5eff1ef82e0b
+
+https://qiita.com/pirosikick/items/0a7e85b3d347e77c0df1
+
+https://yumeno.me/reacct-tailwind-emotion2/

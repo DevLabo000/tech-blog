@@ -29,6 +29,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-use-before-define': 'off', // 関数や変数が定義される前に使われているとエラーになるデフォルトの機能をoff
     '@typescript-eslint/no-use-before-define': ['error'], // typescript側のno-use-before-defineを使うようにする
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'import/prefer-default-export': 'off', // named exportがエラーになるので使えるようにoff
     '@typescript-eslint/no-unused-vars': 'off', // unused-importsを使うため削除
     'unused-imports/no-unused-imports': 'error', // 不要なimportの削除
@@ -46,6 +47,13 @@ module.exports = {
       },
     ],
     'no-param-reassign': [2, { props: false }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true, // devDependenciesのimportを許可
+        optionalDependencies: false,
+      },
+    ],
     'import/extensions': [
       'error',
       {

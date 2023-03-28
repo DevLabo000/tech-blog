@@ -17,8 +17,18 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "jsxImportSource": "@emotion/react"
   },
-  "include": [".eslintrc.cjs", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "files": ["src/types/twin.d.ts"],
+  "include": [
+    ".eslintrc.cjs",
+    "next.config.js",
+    "tailwind.config.js",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/styles/GlobalStyles.js"
+  ],
   "exclude": ["node_modules"]
 }
