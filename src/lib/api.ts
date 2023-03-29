@@ -14,6 +14,30 @@ const client = createClient({
   apiType: process.env.NEXT_PUBLIC_NEWT_API_TYPE as 'cdn' | 'api',
 });
 
+// Newt CDN APIのクライアント（公開コンテンツのみ取得）
+const newtCdnClient = createClient({
+  spaceUid: process.env.NEXT_PUBLIC_NEWT_SPACE_UID,
+  token: process.env.NEXT_PUBLIC_NEWT_API_TOKEN,
+  apiType: 'cdn',
+});
+
+// Newt APIのクライアント（全コンテンツ取得）
+const newtApiClient = createClient({
+  spaceUid: process.env.NEXT_PUBLIC_NEWT_SPACE_UID,
+  token: process.env.NEXT_PUBLIC_NEWT_API_PREVIEW_TOKEN,
+  apiType: 'api',
+});
+
+export async function getArticleBySlug(slug: string, preview: boolean): Promise<Article | null> {
+  const client = preview ? newtApiClient : newtCdnClient;
+  const article = await client.getFirstContent<Article>({
+    appUid: process.env.NEXT_PUBLIC_NEWT_APP_UID,
+    modelUid: process.env.NEXT_PUBLIC_NEWT_ARTICLE_MODEL_UID,
+    query: { slug },
+  });
+  return article;
+}
+
 export const fetchApp = async () => {
   const app = await client.getApp({
     appUid: process.env.NEXT_PUBLIC_NEWT_APP_UID,
