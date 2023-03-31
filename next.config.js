@@ -3,9 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  compiler: {
-    emotion: true,
-  },
+
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -22,6 +20,7 @@ const nextConfig = {
   },
   images: {
     disableStaticImages: true, // importした画像の型定義設定を無効にする
+    domains: ['storage.googleapis.com'],
   },
 };
 

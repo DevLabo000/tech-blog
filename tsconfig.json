@@ -17,10 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    },
-    "jsxImportSource": "@emotion/react"
+    }
   },
-  "files": ["src/types/twin.d.ts"],
   "include": [
     ".eslintrc.cjs",
     "next.config.js",

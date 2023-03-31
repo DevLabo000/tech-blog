@@ -208,7 +208,7 @@ yarn add @emotion/react @emotion/styled @emotion/css @emotion/server
 ### tailwind macro
 
 ```
-yarn add -D twin.macro tailwindcss postcss@latest autoprefixer@latest @emotion/babel-plugin babel-plugin-macros
+yarn add -D twin.macro postcss@latest autoprefixer@latest @emotion/babel-plugin babel-plugin-macros
 ```
 
 ## 参考情報
@@ -254,3 +254,14 @@ declare namespace NodeJS {
   }
 }
 ```
+
+## ResetCssを導入
+
+```sh
+yarn add destyle.css
+```
+
+https://hirakublog.com/emotion-mediaqueries-function/
+
+
+https://tailwindtemplates.io/templates?category=profile

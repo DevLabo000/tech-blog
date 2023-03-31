@@ -1,29 +1,27 @@
 import React from 'react';
 
-import Head from 'next/head';
-
 import { AppMeta } from 'newt-client-js';
 
+import { Footer } from '../Footer';
 import { Header } from '../Header';
 
 export type LayoutProps = {
   app: AppMeta;
   children: React.ReactNode;
-  header: React.ReactNode;
-  subheader: React.ReactNode;
 };
 
 export const Layout: React.FC<LayoutProps> = (props) => {
-  const { app, children, header, subheader } = props;
+  const { app, children } = props;
   return (
-    <div>
+    <div className="bg-gray-50 h-full">
       <Header title={app.name} />
-      <Head>
-        <meta name="description" content={app.name} />
-      </Head>
-      <div>{header}</div>
-      <div>{subheader}</div>
-      <div>{children}</div>
+      <section className="container mx-auto h-full">
+        <div className="mt-10 p-2">
+          <main className="bg-white w-auto m-1 p-2 rounded-md">{children}</main>
+          <div className="bg-white w-auto h-96 m-1 p-2 rounded-md">プロフィール</div>
+        </div>
+      </section>
+      <Footer />
     </div>
   );
 };

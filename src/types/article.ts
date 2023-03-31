@@ -11,10 +11,10 @@ export interface Article {
   meta: {
     title: string;
     description: string;
-    ogImage: { src: string } | null;
+    ogImage: { src: string };
   };
   body: string;
-  coverImage: { src: string } | null;
+  coverImage: { src: string };
   author: Content & Author;
   tags: (Content & Tag)[];
   category: Content & Category;

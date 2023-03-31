@@ -1,6 +1,7 @@
+/* eslint no-underscore-dangle:0 no-shadow:0 */
+/* eslint-disable */
+import '@/styles/index.css';
 import type { AppProps } from 'next/app';
-
-import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />;
 

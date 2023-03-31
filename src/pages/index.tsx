@@ -1,10 +1,11 @@
-import Link from 'next/link';
+/* eslint no-underscore-dangle:0 no-shadow:0 */
 
 import { AppMeta, Content } from 'newt-client-js';
 
 import type { Article } from '@/types/article';
 
 import { Layout } from '@/components/base/Layout';
+import { ArticleCard } from '@/components/ui/ArticleCard';
 import { fetchApp, fetchArchives, fetchArticles, fetchAuthors, fetchCategorys, fetchTags } from '@/lib/api';
 // import { Author } from '@/types/author';
 // import { Category } from '@/types/category';
@@ -24,19 +25,17 @@ export type TopProps = {
   // authorSlug?: string;
   // year?: number;
 };
-
+//
 export const Top = (props: TopProps) => {
   const { app, articles } = props;
   return (
-    <Layout app={app} header={<title>Newt・Next.jsブログ</title>} subheader={<title>Newt・Next.jsブログ</title>}>
+    <Layout app={app}>
       <main>
-        <ul>
+        <div>
           {articles.map((article) => (
-            <li key={article.id}>
-              <Link href={`article/${article.slug}`}>{article.title}</Link>
-            </li>
+            <ArticleCard article={article} key={article._id} />
           ))}
-        </ul>
+        </div>
       </main>
     </Layout>
   );

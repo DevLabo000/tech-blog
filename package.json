@@ -26,10 +26,7 @@
     }
   },
   "dependencies": {
-    "@emotion/css": "^11.10.6",
-    "@emotion/react": "^11.10.6",
-    "@emotion/server": "^11.10.0",
-    "@emotion/styled": "^11.10.6",
+    "destyle.css": "^4.0.0",
     "dotenv": "^16.0.3",
     "newt-client-js": "^3.2.4",
     "next": "13.2.4",
@@ -38,7 +35,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
-    "@emotion/babel-plugin": "^11.10.6",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
@@ -55,7 +51,6 @@
     "@typescript-eslint/parser": "^5.56.0",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^8.3.0",
-    "babel-plugin-macros": "^3.1.0",
     "eslint": "^8.0.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
