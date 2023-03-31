@@ -20,7 +20,7 @@ const nextConfig = {
   },
   images: {
     disableStaticImages: true, // importした画像の型定義設定を無効にする
-    domains: ['storage.googleapis.com'],
+    domains: ['storage.googleapis.com', 'horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app'],
   },
 };
 

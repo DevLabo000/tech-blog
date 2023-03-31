@@ -3,6 +3,7 @@
 
 import { AppMeta, Content } from 'newt-client-js';
 
+import { Layout } from '@/components/base/Layout';
 import { fetchApp, fetchArticles, getArticleBySlug } from '@/lib/api';
 import { Article } from '@/types/article';
 
@@ -13,11 +14,11 @@ export type ArticlePageProps = {
 
 export const ArticlePage = (props: ArticlePageProps) => {
   const { app, currentArticle } = props;
+
   return (
-    <div>
-      <div>{app.name}</div>
-      <main>{currentArticle.body}</main>
-    </div>
+    <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
+      <div className="{}" dangerouslySetInnerHTML={{ __html: currentArticle.body }}></div>
+    </Layout>
   );
 };
 
