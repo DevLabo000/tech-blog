@@ -1,7 +1,11 @@
 /* eslint no-underscore-dangle:0 no-shadow:0 */
 /* eslint-disable */
 
+import { load } from 'cheerio';
+import hljs from 'highlight.js';
 import { AppMeta, Content } from 'newt-client-js';
+import { useEffect } from 'react';
+import tocbot from 'tocbot';
 
 import { Layout } from '@/components/base/Layout';
 import { fetchApp, fetchArticles, getArticleBySlug } from '@/lib/api';
@@ -14,10 +18,48 @@ export type ArticlePageProps = {
 
 export const ArticlePage = (props: ArticlePageProps) => {
   const { app, currentArticle } = props;
+  useEffect(() => {
+    tocbot.init({
+      tocSelector: '.toc',
+      contentSelector: 'body',
+      headingSelector: 'h2, h3',
+    });
+    return () => tocbot.destroy();
+  });
+
+  const $ = load(currentArticle.body, { decodeEntities: false });
+  $('h1, h2').each((index, elm) => {
+    const headerText = $(elm).text();
+    $(elm).contents().wrap(`<a id="${headerText}" href="#${headerText}"></a>`); // ④
+  });
+  $('h2, h3').each((index, elm) => {
+    $(elm).html();
+    $(elm).addClass('headings');
+    $(elm).attr('id', `${index}`);
+  });
+  $('pre code').each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value); // リッチエディタ内のタグ付きhtml文字列を挿入
+    $(elm).addClass('hljs'); // クラス名に'hljs'を追記
+  });
+  currentArticle.body = $.html();
 
   return (
     <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
-      <div className="{}" dangerouslySetInnerHTML={{ __html: currentArticle.body }}></div>
+      <div className="md:flex md:flex-wrap md:justify-center">
+        <div
+          className="prose text-black pt-7 bg-white p-4 md:w-2/3"
+          dangerouslySetInnerHTML={{ __html: currentArticle.body }}
+        />
+        <aside className="hidden sm:hidden md:hidden lg:block xl:block">
+          <div className="sticky top-12 bg-white p-4">
+            <div className="">
+              <p className="text-lg pb-3 font-bold ">目次</p>
+              <nav className="toc " />
+            </div>
+          </div>
+        </aside>
+      </div>
     </Layout>
   );
 };
