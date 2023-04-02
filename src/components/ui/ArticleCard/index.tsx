@@ -18,7 +18,7 @@ export const ArticleCard = (props: ArticleCardProps) => {
   const dd = article._sys.createdAt.substring(8, 10);
   const mmdd = `${mm}/${dd}`;
   return (
-    <Link href={`/article/${article.slug}`}>
+    <Link className="group transition-all duration-500 ease-out" href={`/article/${article.slug}`}>
       <div className="p-2">
         <div className="flex flex-wrap w-auto">
           <div className="border-r">
@@ -30,23 +30,29 @@ export const ArticleCard = (props: ArticleCardProps) => {
           <h1 className="px-3 w-auto text-bold">{article.title}</h1>
         </div>
         {/* <div style={{ position: 'relative', maxWidth: '100%', height: '250px' }}> */}
-        <div className="flex justify-center">
-          <Image
-            src={article.coverImage.src}
-            alt="tete"
-            style={{
-              width: '45%',
-              height: 'auto',
-            }}
-            width={1980}
-            height={1150}
-            sizes="100vw"
-          />
+        <div>
+          <div className="m-5 flex justify-center bg-red-50 rounded-3xl overflow-hidden">
+            <Image
+              src={article.coverImage.src}
+              alt="tete"
+              style={{
+                width: '45%',
+                height: 'auto',
+              }}
+              className="transition-all duration-500 ease-out group-hover:scale-110"
+              width={1980}
+              height={1150}
+              sizes="100vw"
+            />
+          </div>
         </div>
         <div />
         <div className="border-b">
           <div className="mb-10 px-10 md:px-32">
-            <button type="button" className="w-full bg-pink-400 hover:bg-pink-700 text-white py-2 px-4 rounded-full">
+            <button
+              type="button"
+              className="w-full bg-white border border-gray-400 group-hover:bg-pink-400 group-hover:text-white py-2 px-4 rounded-full transition-all duration-500 ease-out"
+            >
               READ MORE
             </button>
           </div>
