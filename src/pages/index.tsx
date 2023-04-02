@@ -47,10 +47,11 @@ export const Top = (props: TopProps) => {
             <ArticleCard article={article} key={article._id} />
           ))}
         </div>
-        <div className="">
-          <ProfileCard authors={bbbb} />
-          <div className=" bg-white w-auto h-52 ">プロフィール</div>
-          <div className=" bg-white w-auto h-52 ">プロフィール</div>
+        <div className="mt-3 rounded-md md:w-2/3">
+          <div className=" bg-white">
+            <ProfileCard authors={bbbb} />
+          </div>
+          <div className=" bg-white w-auto h-52 mt-10" />
         </div>
       </main>
     </Layout>

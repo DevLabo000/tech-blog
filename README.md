@@ -265,3 +265,6 @@ https://hirakublog.com/emotion-mediaqueries-function/
 
 
 https://tailwindtemplates.io/templates?category=profile
+
+
+https://www.youtube.com/watch?v=Gs2SUnw92UU
