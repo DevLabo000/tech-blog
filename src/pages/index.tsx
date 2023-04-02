@@ -42,12 +42,12 @@ export const Top = (props: TopProps) => {
   return (
     <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
       <main className="md:flex md:flex-wrap md:justify-center">
-        <div className="bg-white rounded-md md:w-2/3">
+        <div className="bg-white rounded-md md:w-1/2">
           {articles.map((article) => (
             <ArticleCard article={article} key={article._id} />
           ))}
         </div>
-        <div className="mt-3 rounded-md md:w-2/3">
+        <div className="mt-10 md:mt-0 md:ml-10 rounded-md md:w-1/4">
           <div className=" bg-white">
             <ProfileCard authors={bbbb} />
           </div>
