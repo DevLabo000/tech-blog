@@ -29,19 +29,23 @@ export const ArticleCard = (props: ArticleCardProps) => {
           </div>
           <h1 className="px-3 w-auto text-bold">{article.title}</h1>
         </div>
-        <div style={{ position: 'relative', maxWidth: '100%', height: '250px' }}>
+        {/* <div style={{ position: 'relative', maxWidth: '100%', height: '250px' }}> */}
+        <div className="flex justify-center">
           <Image
             src={article.coverImage.src}
             alt="tete"
-            fill
             style={{
-              objectFit: 'contain',
+              width: '45%',
+              height: 'auto',
             }}
+            width={1980}
+            height={1150}
+            sizes="100vw"
           />
         </div>
         <div />
         <div className="border-b">
-          <div className="mb-10">
+          <div className="mb-10 px-10 md:px-32">
             <button type="button" className="w-full bg-pink-400 hover:bg-pink-700 text-white py-2 px-4 rounded-full">
               READ MORE
             </button>
