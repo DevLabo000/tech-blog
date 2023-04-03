@@ -6,7 +6,9 @@ import type { Article } from '@/types/article';
 
 import { Layout } from '@/components/base/Layout';
 import { ArticleCard } from '@/components/ui/ArticleCard';
+import Category from '@/components/ui/Category';
 import { ProfileCard } from '@/components/ui/ProfileCard';
+import Tag from '@/components/ui/Tag';
 import { fetchApp, fetchArchives, fetchArticles, fetchAuthors, fetchCategorys, fetchTags } from '@/lib/api';
 import { Author } from '@/types/author';
 // import { Category } from '@/types/category';
@@ -51,6 +53,8 @@ export const Top = (props: TopProps) => {
           <div className=" bg-white">
             <ProfileCard authors={bbbb} />
           </div>
+          <Tag title="aaaaaa" />
+          <Category title="bbbb" />
           <div className=" bg-white w-auto h-52 mt-10" />
         </div>
       </main>

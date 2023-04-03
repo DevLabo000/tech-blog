@@ -28,9 +28,9 @@ const newtApiClient = createClient({
   apiType: 'api',
 });
 
-export async function getArticleBySlug(slug: string, preview: boolean): Promise<Article | null> {
+export async function getArticleBySlug(slug: string, preview: boolean): Promise<(Content & Article) | null> {
   const client = preview ? newtApiClient : newtCdnClient;
-  const article = await client.getFirstContent<Article>({
+  const article = await client.getFirstContent<Content & Article>({
     appUid: process.env.NEXT_PUBLIC_NEWT_APP_UID,
     modelUid: process.env.NEXT_PUBLIC_NEWT_ARTICLE_MODEL_UID,
     query: { slug },

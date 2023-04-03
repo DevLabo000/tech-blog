@@ -3,7 +3,7 @@
 import { HatenaIcon, HatenaShareButton, LineIcon, LineShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 
 export const SnsShare = () => (
-  <div>
+  <div className="w-full justify-between">
     <TwitterShareButton url="/" title="a">
       <TwitterIcon round size={32} />
     </TwitterShareButton>

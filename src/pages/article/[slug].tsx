@@ -6,21 +6,24 @@ import { load } from 'cheerio';
 import hljs from 'highlight.js';
 import { AppMeta, Content } from 'newt-client-js';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import tocbot from 'tocbot';
 
 import { Layout } from '@/components/base/Layout';
-import { fetchApp, fetchArticles, getArticleBySlug } from '@/lib/api';
+import { fetchApp, fetchArticles, fetchNextArticle, fetchPreviousArticle, getArticleBySlug } from '@/lib/api';
 import { Article } from '@/types/article';
 
 export type ArticlePageProps = {
   app: AppMeta;
   currentArticle: Content & Article;
   highlightedBody: string;
+  prevArticle: Content & Article;
+  nextArticle: Content & Article;
 };
 
 export const ArticlePage = (props: ArticlePageProps) => {
-  const { app, currentArticle, highlightedBody } = props;
+  const { app, currentArticle, highlightedBody, prevArticle, nextArticle } = props;
 
   useEffect(() => {
     tocbot.init({
@@ -93,6 +96,9 @@ export const ArticlePage = (props: ArticlePageProps) => {
           </div>
           <SnsShare />
           <div className="prose text-black mt-5 w-auto" dangerouslySetInnerHTML={{ __html: highlightedBody }} />
+          <p>aaaa</p>
+          <div>{nextArticle && <Link href={`/article/${nextArticle.slug}`}>a</Link>}</div>
+          <div>{prevArticle && <Link href={`/article/${prevArticle.slug}`}>b</Link>}</div>
         </main>
         <aside className="ml-10 w-1/5 hidden sm:hidden md:hidden lg:block xl:block">
           <div className="sticky top-12 bg-white p-5 md:p-10 rounded-md">
@@ -138,11 +144,18 @@ export async function getStaticProps(context: Context) {
     $(elm).addClass('hljs'); // クラス名に'hljs'を追記
   });
 
+  const prevArticle = currentArticle ? await fetchPreviousArticle({ createdAt: currentArticle._sys.createdAt }) : null;
+  console.log(prevArticle);
+  const nextArticle = currentArticle ? await fetchNextArticle({ createdAt: currentArticle._sys.createdAt }) : null;
+  console.log(nextArticle);
+
   return {
     props: {
       app,
       currentArticle,
       highlightedBody: $.html(),
+      prevArticle,
+      nextArticle,
     },
   };
 }
