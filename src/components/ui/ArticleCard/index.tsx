@@ -19,15 +19,15 @@ export const ArticleCard = (props: ArticleCardProps) => {
   const mmdd = `${mm}/${dd}`;
   return (
     <Link className="group transition-all duration-500 ease-out" href={`/article/${article.slug}`}>
-      <div className="p-2">
-        <div className="flex flex-wrap w-auto">
+      <div className="p-8">
+        <div className="container flex flex-wrap w-auto">
           <div className="border-r">
             <div className="text-gray-500 text-center mr-3">
-              <p className="text-xs">{yyyy}</p>
-              <p className="text-md">{mmdd}</p>
+              <p className="text-md">{yyyy}</p>
+              <p className="text-xl font-bold">{mmdd}</p>
             </div>
           </div>
-          <h1 className="px-3 w-auto text-bold">{article.title}</h1>
+          <h1 className="px-3 font-extrabold text-lg">{article.title}</h1>
         </div>
         {/* <div style={{ position: 'relative', maxWidth: '100%', height: '250px' }}> */}
         <div>

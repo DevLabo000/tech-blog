@@ -9,8 +9,8 @@ type ProfileCardProps = {
 export const ProfileCard = (props: ProfileCardProps) => {
   const { authors } = props;
   return (
-    <div className="flex justify-center items-center">
-      <div className="bg-white mt-10">
+    <div className="flex justify-center items-center w-auto">
+      <div className="bg-white pt-10">
         <div className="flex flex-col justify-center items-center">
           <img
             className="h-full w-32 rounded-full"
@@ -18,7 +18,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
           />
           <h1 className="text-gray-800 text-2xl mt-10 font-bold">{authors.fullName}</h1>
           <p className="text-gray-400 text-sm pt-4">aaaaaaaaaaaaaa</p>
-          <p className="text-gray-400 text-md pt-4 text-center">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+          <span className="text-gray-400 text-md pt-4 text-center">aaaaaaaaaaaaaaaaaa</span>
         </div>
 
         <div className="flex flex-col justify-center items-center mt-3 mb-6">

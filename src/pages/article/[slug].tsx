@@ -1,6 +1,7 @@
 /* eslint no-underscore-dangle:0 no-shadow:0 */
 /* eslint-disable */
 
+import SnsShare from '@/components/ui/SnsShare';
 import { load } from 'cheerio';
 import hljs from 'highlight.js';
 import { AppMeta, Content } from 'newt-client-js';
@@ -15,10 +16,12 @@ import { Article } from '@/types/article';
 export type ArticlePageProps = {
   app: AppMeta;
   currentArticle: Content & Article;
+  highlightedBody: string;
 };
 
 export const ArticlePage = (props: ArticlePageProps) => {
-  const { app, currentArticle } = props;
+  const { app, currentArticle, highlightedBody } = props;
+
   useEffect(() => {
     tocbot.init({
       tocSelector: '.toc',
@@ -26,8 +29,9 @@ export const ArticlePage = (props: ArticlePageProps) => {
       headingSelector: 'h2, h3',
     });
     return () => tocbot.destroy();
-  });
+  }, [highlightedBody]);
 
+  /*
   const $ = load(currentArticle.body, { decodeEntities: false });
   $('h1, h2').each((index, elm) => {
     const headerText = $(elm).text();
@@ -44,6 +48,7 @@ export const ArticlePage = (props: ArticlePageProps) => {
     $(elm).addClass('hljs'); // クラス名に'hljs'を追記
   });
   currentArticle.body = $.html();
+*/
 
   const yyyy = currentArticle._sys.createdAt.substring(0, 4);
   const mm = currentArticle._sys.createdAt.substring(5, 7);
@@ -53,7 +58,7 @@ export const ArticlePage = (props: ArticlePageProps) => {
   return (
     <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
       <div className="md:flex md:flex-wrap md:justify-center">
-        <main className="bg-white rounded-md md:w-1/2 p-5 md:p-10">
+        <main className="bg-white rounded-md md:w-2/3 p-5 md:p-10">
           <div className="flex flex-wrap w-auto mb-5">
             <div className="border-r">
               <div className="text-gray-500 text-center mr-3">
@@ -63,6 +68,7 @@ export const ArticlePage = (props: ArticlePageProps) => {
             </div>
             <h1 className="px-3 w-auto text-bold text-xl">{currentArticle.title}</h1>
           </div>
+
           {/* 
             <ul className="">
               {currentArticle.tags.map((tag) => (
@@ -77,7 +83,7 @@ export const ArticlePage = (props: ArticlePageProps) => {
               src={currentArticle.coverImage.src}
               alt="tete"
               style={{
-                width: '70%',
+                width: '40%',
                 height: 'auto',
               }}
               width={1980}
@@ -85,13 +91,14 @@ export const ArticlePage = (props: ArticlePageProps) => {
               sizes="100vw"
             />
           </div>
-          <div className="prose text-black mt-5" dangerouslySetInnerHTML={{ __html: currentArticle.body }} />
+          <SnsShare />
+          <div className="prose text-black mt-5 w-auto" dangerouslySetInnerHTML={{ __html: highlightedBody }} />
         </main>
         <aside className="ml-10 w-1/5 hidden sm:hidden md:hidden lg:block xl:block">
-          <div className="sticky top-12 bg-white p-5 md:p-10">
+          <div className="sticky top-12 bg-white p-5 md:p-10 rounded-md">
             <div className="">
-              <p className="text-lg pb-3 font-bold ">目次</p>
-              <nav className="toc " />
+              <p className="text-lg pb-3 font-bold">目次</p>
+              <nav className="toc" />
             </div>
           </div>
         </aside>
@@ -111,11 +118,31 @@ export async function getStaticProps(context: Context) {
   const { params, preview = false } = context;
   const app = await fetchApp();
   const currentArticle = await getArticleBySlug(params.slug, preview);
+  if (!currentArticle) {
+    return;
+  }
+
+  const $ = load(currentArticle.body, { decodeEntities: false });
+  $('h1, h2').each((index, elm) => {
+    const headerText = $(elm).text();
+    $(elm).contents().wrap(`<a id="${headerText}" href="#${headerText}"></a>`); // ④
+  });
+  $('h2, h3').each((index, elm) => {
+    $(elm).html();
+    $(elm).addClass('headings');
+    $(elm).attr('id', `${index}`);
+  });
+  $('pre code').each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value); // リッチエディタ内のタグ付きhtml文字列を挿入
+    $(elm).addClass('hljs'); // クラス名に'hljs'を追記
+  });
 
   return {
     props: {
       app,
       currentArticle,
+      highlightedBody: $.html(),
     },
   };
 }

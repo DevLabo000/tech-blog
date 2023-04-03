@@ -47,7 +47,7 @@ export const Top = (props: TopProps) => {
             <ArticleCard article={article} key={article._id} />
           ))}
         </div>
-        <div className="mt-10 md:mt-0 md:ml-10 rounded-md md:w-1/4">
+        <div className="mt-10 md:mt-0 md:ml-10 rounded-md md:w-1/5">
           <div className=" bg-white">
             <ProfileCard authors={bbbb} />
           </div>
