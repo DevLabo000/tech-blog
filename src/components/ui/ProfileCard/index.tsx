@@ -10,17 +10,14 @@ export const ProfileCard = (props: ProfileCardProps) => {
   const { authors } = props;
   return (
     <div className="flex justify-center items-center w-auto">
-      <div className="bg-white pt-10">
-        <div className="flex flex-col justify-center items-center">
-          <img
-            className="h-full w-32 rounded-full"
-            src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar11.1060b63041fdffa5f8ef.png"
-          />
-          <h1 className="text-gray-800 text-2xl mt-10 font-bold">{authors.fullName}</h1>
-          <p className="text-gray-400 text-sm pt-4">aaaaaaaaaaaaaa</p>
-          <span className="text-gray-400 text-md pt-4 text-center">aaaaaaaaaaaaaaaaaa</span>
-        </div>
-
+      <div className="flex flex-col justify-center items-center">
+        <img
+          className="mt-10 h-full w-32 rounded-full"
+          src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar11.1060b63041fdffa5f8ef.png"
+        />
+        <h1 className="text-gray-800 text-2xl mt-10 font-bold">{authors.fullName}</h1>
+        <p className="text-gray-400 text-sm pt-4">aaaaaaaaaaaaaa</p>
+        <span className="text-gray-400 text-md pt-4 text-center">aaaaaaaaaaaaaassssaaaa</span>
         <div className="flex flex-col justify-center items-center mt-3 mb-6">
           <h1>SNS</h1>
           <div className="flex mt-2">

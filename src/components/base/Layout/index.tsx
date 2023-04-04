@@ -22,11 +22,15 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       <Meta title={app.name} description={meta.description} ogImage={meta.ogImage} />
       <div className="bg-gray-50 h-full">
         <Header title={app.name} />
-        <section className="container mx-auto h-full">
-          <div className=" mt-10 p-2">{children}</div>
-        </section>
+        {children}
         <Footer />
       </div>
     </>
   );
 };
+
+/*
+        <section className="container mx-auto h-full">
+          <div className="mt-10 p-2">{children}</div>
+        </section>
+*/

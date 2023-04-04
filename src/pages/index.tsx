@@ -4,11 +4,10 @@ import { AppMeta, Content } from 'newt-client-js';
 
 import type { Article } from '@/types/article';
 
+import { Home } from '@/components/base/Home';
 import { Layout } from '@/components/base/Layout';
 import { ArticleCard } from '@/components/ui/ArticleCard';
-import Category from '@/components/ui/Category';
 import { ProfileCard } from '@/components/ui/ProfileCard';
-import Tag from '@/components/ui/Tag';
 import { fetchApp, fetchArchives, fetchArticles, fetchAuthors, fetchCategorys, fetchTags } from '@/lib/api';
 import { Author } from '@/types/author';
 // import { Category } from '@/types/category';
@@ -43,21 +42,19 @@ export const Top = (props: TopProps) => {
   const { app, articles } = props;
   return (
     <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
-      <main className="md:flex md:flex-wrap md:justify-center">
-        <div className="bg-white rounded-md md:w-1/2">
+      <Home
+        side={
+          <div>
+            <ProfileCard authors={bbbb} />
+          </div>
+        }
+      >
+        <>
           {articles.map((article) => (
             <ArticleCard article={article} key={article._id} />
           ))}
-        </div>
-        <div className="mt-10 md:mt-0 md:ml-10 rounded-md md:w-1/5">
-          <div className=" bg-white">
-            <ProfileCard authors={bbbb} />
-          </div>
-          <Tag title="aaaaaa" />
-          <Category title="bbbb" />
-          <div className=" bg-white w-auto h-52 mt-10" />
-        </div>
-      </main>
+        </>
+      </Home>
     </Layout>
   );
 };
@@ -83,3 +80,21 @@ export const getStaticProps = async () => {
 };
 
 export default Top;
+
+/*
+      <main className="md:flex md:flex-wrap md:justify-center">
+        <div className="bg-white rounded-md md:w-1/2">
+          {articles.map((article) => (
+            <ArticleCard article={article} key={article._id} />
+          ))}
+        </div>
+        <div className="mt-10 md:mt-0 md:ml-10 rounded-md md:w-1/5">
+          <div className=" bg-white">
+            <ProfileCard authors={bbbb} />
+          </div>
+          <Tag title="aaaaaa" />
+          <Category title="bbbb" />
+          <div className=" bg-white w-auto h-52 mt-10" />
+        </div>
+      </main>
+*/
