@@ -29,7 +29,16 @@ export type TopProps = {
 export const Top = (props: TopProps) => {
   const { app, articles, author } = props;
   return (
-    <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
+    <Layout
+      app={app}
+      meta={{
+        title: app.name,
+        siteName: app.name,
+        description: app.name,
+        ogImage: app.cover?.value,
+        favicon: app.icon?.value,
+      }}
+    >
       <Home
         side={
           <div>

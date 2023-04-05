@@ -4,14 +4,11 @@ import { AppMeta } from 'newt-client-js';
 
 import { Footer } from '../Footer';
 import { Header } from '../Header';
-import { Meta } from '../Meta';
+import { Meta, MetaProps } from '../Meta';
 
 export type LayoutProps = {
   app: AppMeta;
-  meta: {
-    description: string;
-    ogImage: string;
-  };
+  meta: MetaProps;
   children: React.ReactNode;
 };
 
@@ -19,9 +16,9 @@ export const Layout: React.FC<LayoutProps> = (props) => {
   const { app, meta, children } = props;
   return (
     <>
-      <Meta title={app.name} description={meta.description} ogImage={meta.ogImage} />
+      <Meta {...meta} />
       <div className="bg-gray-50 h-full">
-        <Header title={app.name} />
+        <Header app={app} />
         {children}
         <Footer />
       </div>
