@@ -2,15 +2,13 @@
 
 import { AppMeta, Content } from 'newt-client-js';
 
-import type { Article } from '@/types/article';
-
 import { Home } from '@/components/base/Home';
 import { Layout } from '@/components/base/Layout';
 import { ArticleCard } from '@/components/ui/ArticleCard';
 import { ProfileCard } from '@/components/ui/ProfileCard';
 import { fetchApp, fetchArchives, fetchArticles, fetchAuthors, fetchCategorys, fetchTags } from '@/lib/api';
+import { Article } from '@/types/article';
 import { Author } from '@/types/author';
-// import { Category } from '@/types/category';
 // import { Tag } from '@/types/tag';
 
 export type TopProps = {
@@ -18,7 +16,7 @@ export type TopProps = {
   app: AppMeta;
   // categorys: (Content & Category & { total: number })[];
   // tags: (Content & Tag & { total: number })[];
-  // authors: (Content & Author & Category & { total: number })[];
+  author: Content & Author;
   // archives: Archive[];
   articles: (Content & Article)[];
   // total: number;
@@ -28,24 +26,14 @@ export type TopProps = {
   // year?: number;
 };
 
-const bbbb: Author = {
-  slug: 'a',
-  name: 'aa',
-  fullName: 'hk',
-  profileImage: {
-    src: 'a',
-  },
-  biography: 'bbbb',
-};
-//
 export const Top = (props: TopProps) => {
-  const { app, articles } = props;
+  const { app, articles, author } = props;
   return (
     <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
       <Home
         side={
           <div>
-            <ProfileCard authors={bbbb} />
+            <ProfileCard authors={author} />
           </div>
         }
       >
@@ -63,7 +51,7 @@ export const getStaticProps = async () => {
   const app = await fetchApp();
   const { categorys } = await fetchCategorys();
   const { tags } = await fetchTags();
-  const { authors } = await fetchAuthors();
+  const { author } = await fetchAuthors();
   const { archives } = await fetchArchives();
   const { articles, total } = await fetchArticles();
   return {
@@ -71,7 +59,7 @@ export const getStaticProps = async () => {
       app,
       categorys,
       tags,
-      authors,
+      author,
       archives,
       articles,
       total,

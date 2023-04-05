@@ -13,7 +13,7 @@ export const Home: React.FC<HomeProps> = (props) => {
       <main className="mt-10 md:flex md:flex-wrap md:justify-center">
         <div className="bg-white rounded-md lg:w-1/2">{children}</div>
         {side && (
-          <aside className="ml-10 hidden sm:hidden md:hidden lg:block xl:block md:w-1/4">
+          <aside className="ml-10 hidden sm:hidden md:hidden lg:block xl:block md:w-1/5">
             <div className="sticky top-20 bg-white p-5 md:px-8 rounded-md">{side}</div>
           </aside>
         )}

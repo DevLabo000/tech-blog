@@ -228,6 +228,7 @@ export const fetchNextArticle = async (options: { createdAt: string }): Promise<
   return article;
 };
 
+/*
 export const fetchAuthors = async () => {
   const { items, total } = await client.getContents<Content & Author>({
     appUid: process.env.NEXT_PUBLIC_NEWT_APP_UID,
@@ -256,6 +257,19 @@ export const fetchAuthors = async () => {
     authors,
     total,
   };
+};
+*/
+
+export const fetchAuthors = async () => {
+  const authors = await client.getContents<Content & Author>({
+    appUid: process.env.NEXT_PUBLIC_NEWT_APP_UID,
+    modelUid: process.env.NEXT_PUBLIC_NEWT_AUTHOR_MODEL_UID,
+  });
+
+  const author = authors.items[0];
+
+  //console.log(authors.items[0]);
+  return { author };
 };
 
 export const fetchArchives = async () => {
