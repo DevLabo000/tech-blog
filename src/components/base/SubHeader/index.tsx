@@ -16,7 +16,7 @@ export const SubHeader: React.FC = () => {
         className="hover:bg-pink-300 text-white font-bold items-center px-4 pt-1"
         onClick={() => router.push('/')}
       >
-        <div className=" inline-flex ">
+        <div className="inline-flex">
           <HomeIcon width={25} height={25} />
           <span className="pl-2 font-bold">ホーム</span>
         </div>

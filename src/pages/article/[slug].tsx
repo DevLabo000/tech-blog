@@ -1,19 +1,20 @@
 /* eslint no-underscore-dangle:0 no-shadow:0 */
 /* eslint-disable */
 
+import { Home } from '@/components/base/Home';
+import { Layout } from '@/components/base/Layout';
 import SnsShare from '@/components/ui/SnsShare';
+import { fetchApp, fetchArticles, fetchNextArticle, fetchPreviousArticle, getArticleBySlug } from '@/lib/api';
+import ChevronLeft from '@/public/chevron-left.svg';
+import ChevronRigth from '@/public/chevron-right.svg';
+import { Article } from '@/types/article';
 import { load } from 'cheerio';
 import hljs from 'highlight.js';
 import { AppMeta, Content } from 'newt-client-js';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import tocbot from 'tocbot';
-
-import { Home } from '@/components/base/Home';
-import { Layout } from '@/components/base/Layout';
-import { fetchApp, fetchArticles, fetchNextArticle, fetchPreviousArticle, getArticleBySlug } from '@/lib/api';
-import { Article } from '@/types/article';
 
 export type ArticlePageProps = {
   app: AppMeta;
@@ -25,7 +26,7 @@ export type ArticlePageProps = {
 
 export const ArticlePage = (props: ArticlePageProps) => {
   const { app, currentArticle, highlightedBody, prevArticle, nextArticle } = props;
-
+  const router = useRouter();
   useEffect(() => {
     tocbot.init({
       tocSelector: '.toc',
@@ -75,13 +76,45 @@ export const ArticlePage = (props: ArticlePageProps) => {
           </div>
           <SnsShare />
           <div className="prose text-black mt-5 w-auto" dangerouslySetInnerHTML={{ __html: highlightedBody }} />
-          <div>{nextArticle && <Link href={`/article/${nextArticle.slug}`}>次の記事へ</Link>}</div>
-          <div>{prevArticle && <Link href={`/article/${prevArticle.slug}`}>前の記事へ</Link>}</div>
+
+          <div className="md:flex md:justify-between mt-10">
+            <div className="md:w-1/2 h-16 my-auto flex justify-start">
+              {nextArticle && (
+                <div className="inline-flex">
+                  <button
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white rounded-l hover:text-gray-800"
+                    onClick={() => router.push(`/article/${nextArticle.slug}`)}
+                  >
+                    <ChevronLeft width={20} height={20} />
+                    次の記事へ
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="md:w-1/2 h-16 my-auto flex justify-end">
+              {prevArticle && (
+                <div className="inline-flex">
+                  <button
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white rounded-l hover:text-gray-800"
+                    onClick={() => router.push(`/article/${prevArticle.slug}`)}
+                  >
+                    前の記事
+                    <ChevronRigth width={20} height={20} />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </Home>
     </Layout>
   );
 };
+/*
+
+            <div>{nextArticle && <Link href={`/article/${nextArticle.slug}`}>次の記事へ</Link>}</div>
+            <div>{prevArticle && <Link href={`/article/${prevArticle.slug}`}>前の記事へ</Link>}</div>
+*/
 
 type Context = {
   params: {
