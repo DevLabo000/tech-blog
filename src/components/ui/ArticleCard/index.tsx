@@ -31,7 +31,7 @@ export const ArticleCard = (props: ArticleCardProps) => {
         </div>
         {/* <div style={{ position: 'relative', maxWidth: '100%', height: '250px' }}> */}
         <div>
-          <div className="m-5 flex justify-center bg-red-50 rounded-3xl overflow-hidden">
+          <div className="m-5 flex justify-center bg-gradient-to-r from-pink-100 to-pink-300 rounded-3xl overflow-hidden">
             <Image
               src={article.coverImage.src}
               alt="tete"
