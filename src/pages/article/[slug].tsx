@@ -9,7 +9,7 @@ import tocbot from 'tocbot';
 
 import { Home } from '@/components/base/Home';
 import { Layout } from '@/components/base/Layout';
-import SnsShare from '@/components/ui/SnsShare';
+import { SocialLink } from '@/components/ui/SocialLink';
 import { fetchApp, fetchArticles, fetchNextArticle, fetchPreviousArticle, getArticleBySlug } from '@/lib/api';
 import ChevronLeft from '@/public/chevron-left.svg';
 import ChevronRigth from '@/public/chevron-right.svg';
@@ -32,6 +32,7 @@ export const ArticlePage = (props: ArticlePageProps) => {
       contentSelector: 'body',
       headingSelector: 'h2, h3',
     });
+    console.log(tocbot.destroy);
     return () => tocbot.destroy();
   }, [highlightedBody]);
 
@@ -44,10 +45,10 @@ export const ArticlePage = (props: ArticlePageProps) => {
     <Layout
       app={app}
       meta={{
-        title: app.name,
+        title: currentArticle.title,
         siteName: app.name,
-        description: app.name,
-        ogImage: app.cover?.value,
+        description: currentArticle.body,
+        ogImage: currentArticle.coverImage.src,
         favicon: app.icon?.value,
       }}
     >
@@ -82,9 +83,9 @@ export const ArticlePage = (props: ArticlePageProps) => {
               sizes="100vw"
             />
           </div>
-          <SnsShare />
-          <div className="prose text-black mt-5 w-auto" dangerouslySetInnerHTML={{ __html: highlightedBody }} />
-
+          <SocialLink title={currentArticle.title} url={`/article/${currentArticle.slug}`} size={32} round={true} />
+          <div className="prose text-black mt-5 w-auto mb-12" dangerouslySetInnerHTML={{ __html: highlightedBody }} />
+          <SocialLink title={currentArticle.title} url={`/article/${currentArticle.slug}`} size={32} round={true} />
           <div className="md:flex md:justify-between mt-10">
             <div className="md:w-1/2 h-16 my-auto flex justify-start">
               {nextArticle && (
@@ -133,7 +134,6 @@ export async function getStaticProps(context: Context) {
   if (!currentArticle) {
     return;
   }
-
   const $ = load(currentArticle.body, { decodeEntities: false });
   $('h1, h2').each((index, elm) => {
     const headerText = $(elm).text();
