@@ -265,10 +265,7 @@ export const fetchAuthors = async () => {
     appUid: process.env.NEXT_PUBLIC_NEWT_APP_UID,
     modelUid: process.env.NEXT_PUBLIC_NEWT_AUTHOR_MODEL_UID,
   });
-
   const author = authors.items[0];
-
-  //console.log(authors.items[0]);
   return { author };
 };
 

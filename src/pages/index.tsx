@@ -1,5 +1,3 @@
-/* eslint no-underscore-dangle:0 no-shadow:0 */
-
 import { AppMeta, Content } from 'newt-client-js';
 
 import { Home } from '@/components/base/Home';
@@ -9,6 +7,7 @@ import { ProfileCard } from '@/components/ui/ProfileCard';
 import { fetchApp, fetchArchives, fetchArticles, fetchAuthors, fetchCategorys, fetchTags } from '@/lib/api';
 import { Article } from '@/types/article';
 import { Author } from '@/types/author';
+
 // import { Tag } from '@/types/tag';
 
 export type TopProps = {
@@ -39,15 +38,10 @@ export const Top = (props: TopProps) => {
         favicon: app.icon?.value,
       }}
     >
-      <Home
-        side={
-          <div>
-            <ProfileCard authors={author} />
-          </div>
-        }
-      >
+      <Home side={<ProfileCard authors={author} />}>
         <>
           {articles.map((article) => (
+            // eslint-disable-next-line no-underscore-dangle
             <ArticleCard article={article} key={article._id} />
           ))}
         </>
@@ -77,21 +71,3 @@ export const getStaticProps = async () => {
 };
 
 export default Top;
-
-/*
-      <main className="md:flex md:flex-wrap md:justify-center">
-        <div className="bg-white rounded-md md:w-1/2">
-          {articles.map((article) => (
-            <ArticleCard article={article} key={article._id} />
-          ))}
-        </div>
-        <div className="mt-10 md:mt-0 md:ml-10 rounded-md md:w-1/5">
-          <div className=" bg-white">
-            <ProfileCard authors={bbbb} />
-          </div>
-          <Tag title="aaaaaa" />
-          <Category title="bbbb" />
-          <div className=" bg-white w-auto h-52 mt-10" />
-        </div>
-      </main>
-*/

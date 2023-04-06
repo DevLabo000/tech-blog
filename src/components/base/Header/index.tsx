@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { AppMeta } from 'newt-client-js';
+import React from 'react';
 
 import { SubHeader } from '../SubHeader';
 
 export type HeaderProps = {
-  /* eslint react/require-default-props: 0 */
   app: AppMeta;
 };
 

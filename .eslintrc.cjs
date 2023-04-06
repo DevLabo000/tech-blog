@@ -26,10 +26,12 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'unused-imports'],
   ignorePatterns: ['build'], // 追加 .eslintignoreに対象外にしているが無いとコンパイルに時間がかかる
   rules: {
+    'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-use-before-define': 'off', // 関数や変数が定義される前に使われているとエラーになるデフォルトの機能をoff
     '@typescript-eslint/no-use-before-define': ['error'], // typescript側のno-use-before-defineを使うようにする
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-floating-promises': ['warn', { ignoreIIFE: true }],
     'import/prefer-default-export': 'off', // named exportがエラーになるので使えるようにoff
     '@typescript-eslint/no-unused-vars': 'off', // unused-importsを使うため削除
     'unused-imports/no-unused-imports': 'error', // 不要なimportの削除
@@ -61,6 +63,8 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
+        svg: 'always',
+        css: 'always',
       },
     ],
     'react/jsx-filename-extension': [
@@ -79,6 +83,8 @@ module.exports = {
       },
     ],
     // importの並び順設定
+    'import/order': ['error', { 'newlines-between': 'always-and-inside-groups' }],
+    /*
     'import/order': [
       'error',
       {
@@ -120,8 +126,9 @@ module.exports = {
         alphabetize: { order: 'asc', caseInsensitive: false },
       },
     ],
+    */
     // importをファイル先頭に記述
-    'import/first': 'error',
+    // 'import/first': 'error',
     // 最後のimportの後に空行を追加
     'import/newline-after-import': 'error',
   },

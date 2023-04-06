@@ -1,8 +1,5 @@
-/* eslint no-underscore-dangle:0 no-shadow:0 */
-/* eslint-disable */
-import React from 'react';
-
 import Head from 'next/head';
+import React from 'react';
 
 export type MetaProps = {
   title: string;

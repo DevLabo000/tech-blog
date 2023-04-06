@@ -1,9 +1,6 @@
-/* eslint no-underscore-dangle:0 no-shadow:0 */
-/* eslint-disable */
+import { Content } from 'newt-client-js';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import { Content } from 'newt-client-js';
 
 import { Article } from '@/types/article';
 
@@ -13,8 +10,11 @@ export type ArticleCardProps = {
 
 export const ArticleCard = (props: ArticleCardProps) => {
   const { article } = props;
+  // eslint-disable-next-line no-underscore-dangle
   const yyyy = article._sys.createdAt.substring(0, 4);
+  // eslint-disable-next-line no-underscore-dangle
   const mm = article._sys.createdAt.substring(5, 7);
+  // eslint-disable-next-line no-underscore-dangle
   const dd = article._sys.createdAt.substring(8, 10);
   const mmdd = `${mm}/${dd}`;
   return (

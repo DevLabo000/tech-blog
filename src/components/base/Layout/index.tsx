@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { AppMeta } from 'newt-client-js';
+import React from 'react';
 
 import { Footer } from '../Footer';
 import { Header } from '../Header';
@@ -25,9 +24,3 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     </>
   );
 };
-
-/*
-        <section className="container mx-auto h-full">
-          <div className="mt-10 p-2">{children}</div>
-        </section>
-*/

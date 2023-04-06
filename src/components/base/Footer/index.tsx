@@ -1,9 +1,5 @@
-/* eslint no-underscore-dangle:0 no-shadow:0 */
-/* eslint-disable */
-
-import React from 'react';
-
 import Link from 'next/link';
+import React from 'react';
 
 import GitHubIcon from '@/public/github.svg';
 

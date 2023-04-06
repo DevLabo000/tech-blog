@@ -1,4 +1,3 @@
-/* eslint no-underscore-dangle:0 no-shadow:0 */
 /* eslint-disable */
 
 import Link from 'next/link';

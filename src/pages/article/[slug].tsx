@@ -1,5 +1,11 @@
-/* eslint no-underscore-dangle:0 no-shadow:0 */
 /* eslint-disable */
+import { load } from 'cheerio';
+import hljs from 'highlight.js';
+import { AppMeta, Content } from 'newt-client-js';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import tocbot from 'tocbot';
 
 import { Home } from '@/components/base/Home';
 import { Layout } from '@/components/base/Layout';
@@ -8,13 +14,6 @@ import { fetchApp, fetchArticles, fetchNextArticle, fetchPreviousArticle, getArt
 import ChevronLeft from '@/public/chevron-left.svg';
 import ChevronRigth from '@/public/chevron-right.svg';
 import { Article } from '@/types/article';
-import { load } from 'cheerio';
-import hljs from 'highlight.js';
-import { AppMeta, Content } from 'newt-client-js';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import tocbot from 'tocbot';
 
 export type ArticlePageProps = {
   app: AppMeta;
@@ -42,7 +41,16 @@ export const ArticlePage = (props: ArticlePageProps) => {
   const mmdd = `${mm}/${dd}`;
 
   return (
-    <Layout app={app} meta={{ description: 'aaaa', ogImage: 'a' }}>
+    <Layout
+      app={app}
+      meta={{
+        title: app.name,
+        siteName: app.name,
+        description: app.name,
+        ogImage: app.cover?.value,
+        favicon: app.icon?.value,
+      }}
+    >
       <Home
         side={
           <>
@@ -110,11 +118,6 @@ export const ArticlePage = (props: ArticlePageProps) => {
     </Layout>
   );
 };
-/*
-
-            <div>{nextArticle && <Link href={`/article/${nextArticle.slug}`}>次の記事へ</Link>}</div>
-            <div>{prevArticle && <Link href={`/article/${prevArticle.slug}`}>前の記事へ</Link>}</div>
-*/
 
 type Context = {
   params: {
@@ -148,9 +151,7 @@ export async function getStaticProps(context: Context) {
   });
 
   const prevArticle = currentArticle ? await fetchPreviousArticle({ createdAt: currentArticle._sys.createdAt }) : null;
-  console.log(prevArticle);
   const nextArticle = currentArticle ? await fetchNextArticle({ createdAt: currentArticle._sys.createdAt }) : null;
-  console.log(nextArticle);
 
   return {
     props: {

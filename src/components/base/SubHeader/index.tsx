@@ -1,9 +1,5 @@
-/* eslint no-underscore-dangle:0 no-shadow:0 */
-/* eslint-disable */
-
-import React from 'react';
-
 import { useRouter } from 'next/router';
+import React from 'react';
 
 import HomeIcon from '@/public/home.svg';
 
@@ -14,6 +10,7 @@ export const SubHeader: React.FC = () => {
       <button
         type="button"
         className="hover:bg-pink-300 text-white font-bold items-center px-4 pt-1"
+        /* eslint-disable-next-line */
         onClick={() => router.push('/')}
       >
         <div className="inline-flex">

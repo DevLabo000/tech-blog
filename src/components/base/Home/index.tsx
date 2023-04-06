@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type HomeProps = {
-  /* eslint react/require-default-props: 0 */
   side?: React.ReactNode;
   children: React.ReactNode;
 };
