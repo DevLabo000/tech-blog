@@ -1,4 +1,5 @@
 import { AppMeta } from 'newt-client-js';
+import Image from 'next/image';
 import React from 'react';
 
 import { SubHeader } from '../SubHeader';
@@ -12,25 +13,21 @@ export const Header: React.FC<HeaderProps> = (props) => {
   return (
     <div className="z-999999 text-center">
       <header className="bg-white h-20">
-        <h1>{app.name}</h1>
-        {/* 
-        <div>
+        <div className="flex justify-center">
           {app.cover && (
             <Image
               src={app.cover?.value}
-              alt="tete"
+              alt="logo"
               style={{
-                width: '10%',
-                height: 'auto',
+                width: '20%',
+                height: '10%',
               }}
-              className="transition-all duration-500 ease-out group-hover:scale-110"
-              width={100}
-              height={100}
+              className=""
+              width={1000}
+              height={200}
             />
           )}
-          
         </div>
-        */}
       </header>
       <SubHeader />
     </div>

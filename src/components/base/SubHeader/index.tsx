@@ -6,10 +6,10 @@ import HomeIcon from '@/public/home.svg';
 export const SubHeader: React.FC = () => {
   const router = useRouter();
   return (
-    <nav className="bg-pink-400">
+    <nav className="bg-primary">
       <button
         type="button"
-        className="hover:bg-pink-300 text-white font-bold items-center px-4 pt-1"
+        className="hover:bg-red-300 text-white font-bold items-center px-4 pt-1"
         /* eslint-disable-next-line */
         onClick={() => router.push('/')}
       >

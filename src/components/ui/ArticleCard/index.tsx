@@ -29,9 +29,8 @@ export const ArticleCard = (props: ArticleCardProps) => {
           </div>
           <h1 className="px-3 font-extrabold text-lg">{article.title}</h1>
         </div>
-        {/* <div style={{ position: 'relative', maxWidth: '100%', height: '250px' }}> */}
         <div>
-          <div className="m-5 flex justify-center bg-gradient-to-r from-pink-100 to-pink-300 rounded-3xl overflow-hidden">
+          <div className="m-5 flex justify-center bg-gradient-to-r from-pink-50 to-pink-100 rounded-3xl overflow-hidden">
             <Image
               src={article.coverImage.src}
               alt="tete"
@@ -51,7 +50,7 @@ export const ArticleCard = (props: ArticleCardProps) => {
           <div className="mb-10 px-10 md:px-32">
             <button
               type="button"
-              className="w-full bg-white border border-gray-400 group-hover:bg-pink-400 group-hover:text-white py-2 px-4 rounded-full transition-all duration-500 ease-out"
+              className="w-full bg-white border border-gray-400 group-hover:bg-primary group-hover:text-white py-2 px-4 rounded-full transition-all duration-500 ease-out"
             >
               READ MORE
             </button>
