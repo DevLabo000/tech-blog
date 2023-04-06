@@ -1,0 +1,48 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: tech-blog-var
+
+steps:
+  - task: DownloadSecureFile@1
+    name: env
+    inputs:
+      secureFile: '.env'
+    displayName: 'Downloading secure file'
+
+  - script: |
+      echo Downloaded $(env.secureFilePath)
+      mv $(env.secureFilePath) $(System.DefaultWorkingDirectory)
+    displayName: Move .env to Working Directory
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '16.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      yarn
+    displayName: 'yarn install'
+
+  - script: |
+      yarn build
+    displayName: 'yarn build'
+
+  # Static Web Appsのデプロイ
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: '/'
+      api_location: ''
+      output_location: '.next'
+    displayName: 'token $(deployment_token)'
+    env:
+      azure_static_web_apps_api_token: $(deployment_token)
