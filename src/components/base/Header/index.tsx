@@ -16,15 +16,15 @@ export const Header: React.FC<HeaderProps> = (props) => {
         <div className="flex justify-center">
           {app.cover && (
             <Image
-              src={app.cover?.value}
+              src={app.cover.value}
               alt="logo"
               style={{
                 width: '20%',
-                height: '10%',
+                height: 'auto',
               }}
-              className=""
-              width={1000}
-              height={200}
+              className="sx:"
+              width={500}
+              height={100}
             />
           )}
         </div>

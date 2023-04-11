@@ -11,7 +11,7 @@ export const Footer: React.FC = () => (
     </div>
     <div>
       <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row justify-center">
-        <p className="text-gray-500 text-sm text-center sm:text-left">© 2023 - 2023 AZTECH</p>
+        <p className="text-gray-500 text-sm text-center sm:text-left">© 2023 - 2023 Dev Labo</p>
       </div>
     </div>
   </footer>
