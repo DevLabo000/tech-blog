@@ -23,6 +23,7 @@ const nextConfig = {
     domains: [
       'storage.googleapis.com',
       'horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app',
+      'devlabo-hk.com',
       'localhost',
     ],
   },
