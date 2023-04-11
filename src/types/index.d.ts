@@ -16,5 +16,6 @@ declare namespace NodeJS {
     readonly NEXT_PUBLIC_NEWT_AUTHOR_MODEL_UID: string;
     readonly NEXT_PUBLIC_PAGE_LIMIT: string;
     readonly NEXT_PUBLIC_PREVIEW_SECRET: string;
+    readonly NEXT_PUBLIC_OG_IMAGE_DOMAIN: string;
   }
 }

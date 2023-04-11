@@ -10,6 +10,7 @@ export type ArticleCardProps = {
 
 export const ArticleCard = (props: ArticleCardProps) => {
   const { article } = props;
+  const ogUrl = process.env.NEXT_PUBLIC_OG_IMAGE_DOMAIN;
   // eslint-disable-next-line no-underscore-dangle
   const yyyy = article._sys.createdAt.substring(0, 4);
   // eslint-disable-next-line no-underscore-dangle
@@ -30,17 +31,17 @@ export const ArticleCard = (props: ArticleCardProps) => {
           <h1 className="px-3 font-extrabold text-lg">{article.title}</h1>
         </div>
         <div>
-          <div className="m-5 flex justify-center bg-gradient-to-r from-pink-50 to-pink-100 rounded-3xl overflow-hidden">
+          <div className="m-5 flex justify-center bg-gradient-to-r from-pink-50 to-pink-100 overflow-hidden">
             <Image
-              src={article.coverImage.src}
+              src={`${ogUrl}/api/og?title=${article.title}`}
               alt="tete"
               style={{
-                width: '45%',
+                width: '100%',
                 height: 'auto',
               }}
               className="transition-all duration-500 ease-out group-hover:scale-110"
-              width={1980}
-              height={1150}
+              width={1024}
+              height={512}
               sizes="100vw"
             />
           </div>
