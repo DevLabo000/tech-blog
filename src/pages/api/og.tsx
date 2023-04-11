@@ -32,9 +32,9 @@ export default function handler(req: NextRequest) {
           <div
             style={{
               width: '100%',
-              fontSize: 50,
+              fontSize: 60,
               fontStyle: 'normal',
-              fontWeight: '800',
+              fontWeight: 'bold',
               color: '#000',
               padding: '0 120px',
               lineHeight: 1.3,
@@ -47,8 +47,8 @@ export default function handler(req: NextRequest) {
         </div>
       ),
       {
-        width: 1024,
-        height: 512,
+        width: 1200,
+        height: 630,
       }
     );
 
