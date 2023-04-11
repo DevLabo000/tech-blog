@@ -1,12 +1,4 @@
 /* eslint-disable */
-import { load } from 'cheerio';
-import hljs from 'highlight.js';
-import { AppMeta, Content } from 'newt-client-js';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import tocbot from 'tocbot';
-
 import { Home } from '@/components/base/Home';
 import { Layout } from '@/components/base/Layout';
 import { SocialLink } from '@/components/ui/SocialLink';
@@ -14,6 +6,13 @@ import { fetchApp, fetchArticles, fetchNextArticle, fetchPreviousArticle, getArt
 import ChevronLeft from '@/public/chevron-left.svg';
 import ChevronRigth from '@/public/chevron-right.svg';
 import { Article } from '@/types/article';
+import { load } from 'cheerio';
+import hljs from 'highlight.js';
+import { AppMeta, Content } from 'newt-client-js';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import tocbot from 'tocbot';
 
 export type ArticlePageProps = {
   app: AppMeta;
@@ -25,6 +24,8 @@ export type ArticlePageProps = {
 
 export const ArticlePage = (props: ArticlePageProps) => {
   const { app, currentArticle, highlightedBody, prevArticle, nextArticle } = props;
+
+  const ogUrl = process.env.NEXT_PUBLIC_OG_IMAGE_DOMAIN;
   const router = useRouter();
   useEffect(() => {
     tocbot.init({
@@ -47,8 +48,8 @@ export const ArticlePage = (props: ArticlePageProps) => {
       meta={{
         title: currentArticle.title,
         siteName: app.name,
-        description: currentArticle.body,
-        ogImage: currentArticle.coverImage.src,
+        description: currentArticle.title,
+        ogImage: `${ogUrl}/api/og?title=${currentArticle.title}`,
         favicon: app.icon?.value,
       }}
     >
@@ -70,16 +71,16 @@ export const ArticlePage = (props: ArticlePageProps) => {
             </div>
             <h1 className="px-3 w-auto text-bold text-xl">{currentArticle.title}</h1>
           </div>
-          <div className="flex justify-center bg-red-50 rounded-3xl overflow-hidden mb-5">
+          <div className="flex justify-center bg-red-50 overflow-hidden mb-5">
             <Image
-              src={currentArticle.coverImage.src}
+              src={`${ogUrl}/api/og?title=${currentArticle.title}`}
               alt="tete"
               style={{
-                width: '40%',
-                height: 'auto',
+                width: '100%',
+                height: '100%',
               }}
-              width={1980}
-              height={1150}
+              width={1200}
+              height={1000}
               sizes="100vw"
             />
           </div>
