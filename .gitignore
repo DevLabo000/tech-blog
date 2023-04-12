@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# next-sitemap が自動生成するファイルは除外する
+/public/sitemap*.xml
+/public/robots.txt
