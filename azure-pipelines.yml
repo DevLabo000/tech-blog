@@ -34,7 +34,7 @@ steps:
     inputs:
       app_location: '/'
       api_location: ''
-      output_location: '.next'
+      output_location: '/out'
     displayName: 'token $(deployment_token)'
     env:
       azure_static_web_apps_api_token: $(deployment_token)
